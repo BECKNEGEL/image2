@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>登录注册</title>
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body data-page="auth" class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-intro">
+        <a class="btn btn-quiet" href="./出图首页.html">返回首页</a>
+        <div class="auth-logo">AI</div>
+        <h1>登录图片生成工作台</h1>
+        <p>用文字生成图片，也可以上传图片做背景、光线、质感和细节优化。登录后会保存积分余额、生成历史和任务结果。</p>
+        <div class="auth-feature-grid">
+          <div><strong>标准成品图</strong><span>10积分/张，适合日常海报和宣传图。</span></div>
+          <div><strong>高清精修图</strong><span>40积分/张，适合细节要求高的图片。</span></div>
+          <div><strong>历史记录</strong><span>生成任务会跟随账号保存。</span></div>
+        </div>
+      </section>
+
+      <section class="auth-panel">
+        <div class="section-title">
+          <h2>账号登录 / 注册</h2>
+        </div>
+        <div class="auth-box">
+          <input id="authUsername" class="plain-input" autocomplete="username" placeholder="账号" />
+          <input id="authPassword" class="plain-input" type="password" autocomplete="current-password" placeholder="密码" />
+          <input id="authNickname" class="plain-input" placeholder="昵称，注册时可填" />
+          <div class="auth-actions">
+            <button id="loginBtn" class="btn btn-secondary" type="button">登录</button>
+            <button id="registerBtn" class="btn btn-primary" type="button">注册</button>
+          </div>
+          <p id="redirectText" class="field-help"></p>
+          <p id="authMessage" class="field-help"></p>
+        </div>
+        <a id="continueLink" class="btn btn-quiet user-only" href="./出图首页.html" hidden>继续使用当前账号</a>
+      </section>
+    </main>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

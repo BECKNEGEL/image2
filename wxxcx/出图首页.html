@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>图片生成工作台</title>
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body data-page="home" class="gpt-home">
+    <main class="chat-shell">
+      <aside id="settingsSidebar" class="settings-sidebar">
+        <div class="sidebar-head">
+          <div>
+            <strong>生成设置</strong>
+            <span>选择类型、尺寸和清晰度</span>
+          </div>
+          <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="折叠设置">›</button>
+        </div>
+
+        <section class="sidebar-section">
+          <div class="sidebar-label">任务类型</div>
+          <div class="mode-switch" role="tablist" aria-label="选择生成类型">
+            <button class="mode-option is-active" type="button" data-mode="text">文字生成图片</button>
+            <button class="mode-option" type="button" data-mode="image">上传图片修改</button>
+          </div>
+        </section>
+
+        <section id="imageSettings" class="sidebar-section image-only" hidden>
+          <div class="sidebar-label">上传图片</div>
+          <label id="uploadCard" class="upload-card compact-upload">
+            <img id="uploadPreview" class="upload-preview" alt="原图预览" />
+            <span class="upload-empty">
+              <span class="upload-icon">+</span>
+              <strong>选择图片</strong>
+              <span>JPG / PNG / WEBP，10MB 内</span>
+            </span>
+            <input id="imageInput" type="file" accept="image/*" />
+          </label>
+        </section>
+
+        <section class="sidebar-section">
+          <div class="sidebar-label">图片尺寸</div>
+          <select id="imageSizeSelect" class="plain-select" aria-label="选择图片尺寸">
+            <option value="1024x1024">方图 1024×1024</option>
+            <option value="1024x1536">竖图 1024×1536</option>
+            <option value="1536x1024">横图 1536×1024</option>
+          </select>
+        </section>
+
+        <section class="sidebar-section">
+          <div class="sidebar-label">清晰度</div>
+          <div class="quality-toggle" role="group" aria-label="选择清晰度">
+            <button class="quality-button is-selected" type="button" data-quality="medium">
+              <strong>标准</strong>
+              <span>medium · 10积分</span>
+            </button>
+            <button class="quality-button" type="button" data-quality="high">
+              <strong>高级</strong>
+              <span>high quality · 40积分</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="sidebar-section">
+          <div class="sidebar-label">预设提示词</div>
+          <div class="preset-list">
+            <button
+              data-kind="text"
+              data-prompt="生成一张小红书风格的中文美食科普海报，主题是“年糕讲解图”。整体画面要精致、温暖、有食欲、适合社交媒体传播。主视觉是一盘热气腾腾、切片整齐的白色年糕，质感软糯细腻。画面采用米白、红棕、浅金色配色，加入中式新年元素，如梅花、稻穗、蒸笼、云纹、小吊牌等。标题为“年糕讲解图”，副标题为“软糯香甜，一张图带你了解年糕”。下方设计4个知识卡片，分别介绍什么是年糕、常见原料、常见吃法、口感特点，并在最底部加入“小贴士”区域。整体排版干净清晰，图文并茂，像专业餐饮品牌宣传海报。"
+              type="button"
+            >年糕科普海报</button>
+            <button
+              data-kind="text"
+              data-prompt="生成一张中文饮品上新海报，主题是“春日莓果气泡茶”。画面清新明亮，主视觉是一杯透明玻璃杯装的粉红莓果气泡茶，杯壁有水珠，顶部有草莓、蓝莓、薄荷叶和细腻气泡。标题为“春日莓果气泡茶”，副标题为“酸甜清爽，一口喝到春天”。下方设计3个卖点卡片：真果香、低负担、清爽气泡。整体排版干净，有高级饮品品牌海报质感。"
+              type="button"
+            >饮品上新海报</button>
+            <button
+              data-kind="image"
+              data-prompt="保留主体不变，把背景改成干净的浅灰摄影棚，光线柔和，增加自然阴影和高级质感，不要添加文字。"
+              type="button"
+            >干净摄影棚</button>
+            <button
+              data-kind="image"
+              data-prompt="保持主体结构和颜色，去掉杂乱背景，让画面更清晰、更自然，适合做展示图片。"
+              type="button"
+            >去除杂乱背景</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="chat-main">
+        <header class="chat-topbar">
+          <div class="brand">
+            <span class="brand-mark mono">AI</span>
+            <div>
+              <h1>图片生成工作台</h1>
+              <p>生成成功后扣积分，系统失败不扣积分</p>
+            </div>
+          </div>
+          <div class="top-actions">
+            <a class="btn btn-secondary" href="./历史记录页.html">历史</a>
+            <a class="credit-pill" data-account-link href="./登录注册页.html?redirect=出图首页.html" data-points>登录 / 注册</a>
+          </div>
+        </header>
+
+        <div class="chat-scroll">
+          <section class="welcome-card">
+            <h2 id="workspaceTitle">开始生成图片</h2>
+            <p id="workspaceSubtitle">下方输入提示词来生成图片。</p>
+            <div class="cost-summary">
+              <span>当前余额：<strong data-points>未登录</strong></span>
+              <span>本次消耗：<strong data-current-cost>10 积分</strong></span>
+              <span>规格：<strong data-current-size>方图 1024x1024</strong></span>
+              <span>类型：<strong data-current-quality>标准成品图</strong></span>
+            </div>
+          </section>
+
+          <section id="imagePreviewPanel" class="preview-panel image-only" hidden>
+            <div class="preview-headline">
+              <strong>图片任务</strong>
+              <span>先上传图片，再输入修改要求</span>
+            </div>
+            <div class="image-preview-line">
+              <div class="preview-slot">
+                <span>原图会显示在这里</span>
+                <img id="mainImagePreview" alt="原图预览" />
+              </div>
+              <div class="preview-slot muted-slot">
+                <span>生成结果会显示在任务详情中</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="chat-composer">
+          <textarea id="prompt" class="chat-input" maxlength="2000" placeholder="输入提示词，例如：生成一张小红书风格中文美食科普海报..."></textarea>
+          <div class="composer-footer">
+            <span id="counter">0/2000</span>
+            <span id="homeMessage" class="inline-message"></span>
+            <div class="composer-actions">
+              <button id="clearPrompt" class="btn btn-secondary" type="button">清空</button>
+              <button id="generateBtn" class="btn btn-primary" type="button" disabled>生成图片</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

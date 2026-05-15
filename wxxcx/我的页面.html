@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>我的</title>
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body data-page="profile">
+    <main class="phone-shell">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark">我</span>
+          <div>
+            <h1>我的</h1>
+            <p>账号、积分余额和常用入口。</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="profile-head">
+          <div class="avatar">AI</div>
+          <div>
+            <h2 class="page-title" data-username>未登录用户</h2>
+            <p class="subtitle" data-user-id>登录后生成历史会自动保存</p>
+          </div>
+        </div>
+        <div class="button-row">
+          <a class="btn btn-secondary" href="./套餐购买页.html">积分充值</a>
+          <a class="btn btn-primary" href="./出图首页.html">开始生成</a>
+        </div>
+        <button id="logoutBtn" class="btn btn-quiet user-only" type="button" hidden>退出登录</button>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <h2>使用概况</h2>
+          <a class="btn btn-quiet" href="./订单记录页.html">积分流水</a>
+        </div>
+        <div id="profileStats">
+          <div class="empty"><span>登录后查看积分余额。</span></div>
+        </div>
+      </section>
+
+      <section class="list">
+        <a class="list-card" href="./历史记录页.html">
+          <div class="list-thumb">历</div>
+          <div>
+            <h3>历史记录</h3>
+            <p>查看已经生成的图片和任务状态。</p>
+          </div>
+        </a>
+        <a class="list-card" href="./订单记录页.html">
+          <div class="list-thumb">流</div>
+          <div>
+            <h3>积分流水</h3>
+            <p>查看充值到账、生成扣除等积分变动。</p>
+          </div>
+        </a>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <a href="./出图首页.html" data-page="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.2 5.4L20 10.5l-5.4 2.2L12 19l-2.4-6.3L4 10.5l5.7-2.1L12 3z"/></svg><span>生成</span></a>
+      <a href="./历史记录页.html" data-page="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v6l4 2"/></svg><span>历史</span></a>
+      <a href="./套餐购买页.html" data-page="plans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18"/></svg><span>充值</span></a>
+      <a href="./我的页面.html" data-page="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>我的</span></a>
+    </nav>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
